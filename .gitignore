@@ -31,3 +31,9 @@ npm-debug.log
 
 # Teh Corgehs
 corgi.json
+
+# sqlite db
+db.sqlite
+
+# compiled python scripts
+scripts/traceping/*.pyc
