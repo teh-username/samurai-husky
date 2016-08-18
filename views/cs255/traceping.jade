@@ -1,0 +1,16 @@
+extends ./../layout.jade
+
+block stylesheet
+
+block content
+  div(style="height: 500px; width: 500px; margin: auto;")
+    canvas#myChart
+  div#map(style="height:75%; width:95%; position: absolute; margin-top: -200px; left:33px; margin-bottom: 10px;")
+
+append scripts
+  script.
+    var freq = !{JSON.stringify(freq).replace(/<\//g, '<\\/')}
+    var routes = !{JSON.stringify(routes).replace(/<\//g, '<\\/')}
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.min.js")
+  script(src="/javascripts/traceping.js")
+  script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdT__no-U-lPbQK097OuwO72lMDygNOTk&callback=initMap", async, defer)
