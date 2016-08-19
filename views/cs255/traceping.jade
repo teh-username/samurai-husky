@@ -3,6 +3,8 @@ extends ./../layout.jade
 block stylesheet
 
 block content
+  p= "Figures below show the ping and traceroute (respectively) to the website "
+    a(href="https://reddit.com")= "Reddit"
   div(style="height: 500px; width: 500px; margin: auto;")
     canvas#myChart
   div#map(style="height:75%; width:95%; position: absolute; margin-top: -200px; left:33px; margin-bottom: 10px;")

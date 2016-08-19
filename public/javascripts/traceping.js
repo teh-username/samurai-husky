@@ -8,7 +8,7 @@ function initMap(){
     // Define a symbol using a predefined path (an arrow)
     // supplied by the Google Maps JavaScript API.
     var lineSymbol = {
-      path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
+      path: google.maps.SymbolPath.FORWARD_OPEN_ARROW
     };
 
     // do the fancy arrow thingies
@@ -26,8 +26,20 @@ function initMap(){
               }],
               map: map
             });
+
+            animateArrow(line);
         });
     }
+}
+
+function animateArrow(line){
+    var count = 0;
+    window.setInterval(function() {
+        count = (count + 1) % 200;
+        var icons = line.get('icons');
+        icons[0].offset = (count / 2) + '%';
+        line.set('icons', icons);
+    }, 20);
 }
 
 (function(){
