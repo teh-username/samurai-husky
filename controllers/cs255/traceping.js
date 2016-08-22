@@ -1,4 +1,6 @@
-knex = require('../../library/db').knex
+'use strict';
+
+var knex = require('../../library/db').knex;
 
 module.exports = function(req, res, next){
     knex('ping')
@@ -14,8 +16,8 @@ module.exports = function(req, res, next){
             });
 
             var routes = traceroutes.map(function(route){
-                return JSON.parse(route['route']).map(function(blip){
-                    return {hostname: blip['hostname'], lat: blip['latitude'], lng: blip['longitude']};
+                return JSON.parse(route.route).map(function(blip){
+                    return {hostname: blip.hostname, lat: blip.latitude, lng: blip.longitude};
                 });
             });
 
@@ -25,4 +27,4 @@ module.exports = function(req, res, next){
             });
         });
     });
-}
+};

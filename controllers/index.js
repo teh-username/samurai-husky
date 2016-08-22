@@ -1,3 +1,5 @@
+'use strict';
+
 var fs = require('fs');
 var https = require('https');
 var corgiFilePath = 'corgi.json';
@@ -24,7 +26,7 @@ module.exports = function(req, res, next) {
             corgeh:  corgeh
         });
     });
-}
+};
 
 function updateCorgis(){
     https.get('https://www.reddit.com/r/corgi/top/.json?count=30', function(res){

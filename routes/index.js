@@ -1,3 +1,5 @@
+'use strict';
+
 var express = require('express');
 var router = express.Router();
 
@@ -14,6 +16,6 @@ router.get('/cs255/traceping', tracepingController);
 
 /* blog */
 router.get('/cs255/blogs/:name?', blogController.index);
-router.post('/cs255/blogs/:name/comment', blogController.comment)
+router.post('/cs255/blogs/:name/comment', blogController.comment);
 
 module.exports = router;

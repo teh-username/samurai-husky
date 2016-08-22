@@ -16,9 +16,9 @@ module.exports.index = function(req, res, next){
     var blogName = req.params.name+'.jade';
     fs.stat(path.resolve(blogsDir, blogName), function(err, stat){
         if(err){
-            var err = new Error('Not Found');
-            err.status = 404;
-            return next(err);
+            var error = new Error('Not Found');
+            error.status = 404;
+            return next(error);
         }
 
         knex('comment')
@@ -26,12 +26,12 @@ module.exports.index = function(req, res, next){
         .where({'blog': req.params.name})
         .then(function(comments){
             res.render('cs255/blogs/'+blogName, {
-                captchaPublic: config['recaptcha']['site'],
+                captchaPublic: config.recaptcha.site,
                 comments: comments
             });
         });
-    })
-}
+    });
+};
 
 module.exports.comment = function(req, res, next){
     var name = req.body.name;
@@ -59,9 +59,9 @@ module.exports.comment = function(req, res, next){
     }
 
     request.post({
-        url: config['recaptcha']['url'], 
+        url: config.recaptcha.url, 
         form: {
-            secret: config['recaptcha']['secret'],
+            secret: config.recaptcha.secret,
             response: req.body['g-recaptcha-response']
         }
     }, function(err,httpResponse,body){
@@ -91,4 +91,4 @@ module.exports.comment = function(req, res, next){
             return next(err);
         });
     });
-}
+};
