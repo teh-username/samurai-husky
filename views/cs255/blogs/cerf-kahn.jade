@@ -12,10 +12,10 @@ block blog-body
       div.col-md-2
       div.col-md-8
         p.text-justify.
-          Before I begin the review of the paper, let us setup first the context at which this paper was written so as to avoid confusion when much
-          of the paper's content seem to relate to the present. Cerf and Kahn wrote the paper at a time when computer networks was fairly deployed
+          Before we begin with the review of the paper, let us setup first the context at which this paper was written so as to avoid confusion due to much
+          of the paper's content relate very much to the present. Cerf and Kahn wrote the paper at a time when computer networks was fairly deployed
           but was pretty much isolated from one another e.g. network A and network B both exist but they can only connect hosts within 
-          their local presence but not from both. Meaning you cannot send data from network A to network B or vice versa.
+          their local presence but not from both. Meaning, you cannot send data from network A to network B or vice versa.
         <br/>
         p.text-justify.
           Now, the paper under review attempts to solve the above mentioned problem by means of introducing a protocol for interconnecting packet-based
@@ -25,28 +25,28 @@ block blog-body
           that runs the Internet today, the TCP/IP suite.
         <br/>
         p.text-justify.
-          Right at the start, Cerf and Kahn enumerates what is preventing the already deployed packet switching networks from 
-          seamlessly connecting with each other. They then methodically tackle each problem and present a layer which will effectively solve the said problem. 
-          They enumerated 5 which are (paraphrased):
+          Right at the start, Cerf and Kahn enumerates what are the issues preventing the already deployed packet switching networks from 
+          seamlessly connecting with each other. They then methodically tackle each problem and present a layer which will effectively solve the said problems. 
+          The issues are (paraphrased):
         ol
-          li Addressing per network
+          li Addressing notation per network
           li Allowed size of data to travel the network
           li Varying time delays in each process step per network
           li Data recovering and restoration in case of corruption
-          li Signaling of statuses or notification
+          li Signaling of statuses and notification
         <br/>
         p.text-justify.
           The main problem lies with connecting a multitude of networks with each implementing their own strategy with regards to the 5 items enumerated above. 
           The paper preferred to introduce an interface of some sort that will handle the passage of data between networks and will take care of the appropriate "conversion" needed 
-          so that the data can pass through safely and consistently. They named this interface the "Gateway".
+          so that the data can pass through safely and consistently which they aptly named "Gateway".
         <br/>
         p.text-justify.
-          The gateway, apart from converting the compatibility of a data from one network to another will also be in charge of routing the data which would mean the information needed 
-          should be standardized which led to the "internetwork header" shown below:
+          The gateway, apart from converting the compatibility of a data from one network to another will also be in charge of routing the data which would mean the information needed related
+          to addressing should be standardized. It led them to develop an "internetwork header" shown below:
         image(src="/images/cs255/figure_3.png").center-block
         <br/>
         p.text-justify.
-          Another task of the gateway would be to fragment a packet which would in turn solve item 2 in the list. This would be relevant when a packet 
+          Another task of the gateway would be to fragment a packet which should in turn solve the second item in the list. This would be relevant when a packet 
           traversing a network that allows a large size crosses over a network with a lower acceptable packet size. The reassembly would then be left to the host.
         <br/>
         p.text-justify.
@@ -56,17 +56,17 @@ block blog-body
         <br/>
         p.text-justify.
           One of the many functions of the TCP (sender) is to attach a "process header" (different from the internetwork header above) so that the TCP (receiver) 
-          knows where to forward this particular segment as opposed to packing as many segments (from different processes) in a packet then sending. One might ask then, 
-          how would the receiving TCP know where to forward such packet given a header? This, along the with addressing problem of the internetwork header is solved by the notation below 
+          knows to which process should it forward this particular segment as opposed to packing as many segments (from different processes) in a packet then sending. One might ask then, 
+          how would the receiving TCP do this task? This, along with the addressing problem of the internetwork header is solved by the notation below 
           (which in turn solves the first item in the list above):
         image(src="/images/cs255/figure_4.png").center-block
         <br/>
         p.text-justify.
-          The first 8 bits is used to distinguish which network the packet is destined to while the last 16 bits will be used to determine the host and port, with the convention/slicing of the bits left to the communicating processes.
+          The first 8 bits is used to distinguish which network the packet is destined to (which might work at Cerf and Kahn's time, but not today) while the last 16 bits will be used to determine the host and port, with the convention/slicing of the bits left to the communicating processes.
         <br/>
         p.text-justify.
-          Now that the TCP has been introduced, we shall return to the fragmentation functionality of the gateway. We have mentioned that task of reassembling the packets should be left to the host which coincidentally, \
-          would be undertaken by the TCP. Naturally, this would require the packets to contain a sequence number so that the TCP knows where to place the packet in forming the message. 
+          Now that the TCP has been introduced, we shall return to the fragmentation functionality of the gateway. We have mentioned that task of reassembling the packets should be left to the host which coincidentally,
+          would be undertaken by the TCP. Naturally, this would require the packets to contain a sequence number so that the TCP knows where to place the packet when rebuilding the original message. 
           Sequence assignment would just be the relative location of the current segment to the first byte which is illustrated below:
         image(src="/images/cs255/figure_7.png").center-block
         p.text-justify.
@@ -79,8 +79,8 @@ block blog-body
         <br/>
         p.text-justify.
           Taking this concept to the real world as it is would immediately fail since these are all assuming 100% reliability, that each packet will eventually arrive at 
-          their destination without any hiccup but unfortunately, this will never be the case so the paper then introduces how to handle packet loss, 
-          retransmission of the data and detecting duplicates.
+          their destination without any hiccup. Unfortunately, this will never be the case so the paper then introduces how to handle packet loss, 
+          retransmission of data and duplicate detection.
         <br/>
         p.text-justify.
           The paper opts for a "sliding window" mode of operation which is visually interpreted below:
