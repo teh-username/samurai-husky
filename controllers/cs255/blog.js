@@ -27,7 +27,8 @@ module.exports.index = function(req, res, next){
         .then(function(comments){
             res.render('cs255/blogs/'+blogName, {
                 captchaPublic: config.recaptcha.site,
-                comments: comments
+                comments: comments,
+                title: 'CS255 | Blogs',
             });
         });
     });
