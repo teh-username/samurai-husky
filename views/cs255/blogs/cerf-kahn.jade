@@ -1,0 +1,106 @@
+extends ./blog-layout.jade
+
+block blog-body
+  div.container
+    div.row
+      div.col-md-2
+      div.col-md-8
+        h2.text-center.pager-header A Review of "A Protocol for Packet Network Intercommunication" by V. Cerf and R. Kahn
+      div.col-md-2
+    <br/>
+    div.row
+      div.col-md-2
+      div.col-md-8
+        p.text-justify.
+          Before I begin the review of the paper, let us setup first the context at which this paper was written so as to avoid confusion when much
+          of the paper's content seem to relate to the present. Cerf and Kahn wrote the paper at a time when computer networks was fairly deployed
+          but was pretty much isolated from one another e.g. network A and network B both exist but they can only connect hosts within 
+          their local presence but not from both. Meaning you cannot send data from network A to network B or vice versa.
+        <br/>
+        p.text-justify.
+          Now, the paper under review attempts to solve the above mentioned problem by means of introducing a protocol for interconnecting packet-based
+          networks. They relied heavily on an existing "Transmission Control Program" (which they slowly build up throughout the paper) that would serve 
+          as the "mailman" in delivering a message from the source to a particular destination. It is worthy to note that the "Transmission Control Program" mentioned 
+          all throughout the paper and perhaps the most important contribution of this paper, was that it would serve as a precursor to the birth of the current protocol suite 
+          that runs the Internet today, the TCP/IP suite.
+        <br/>
+        p.text-justify.
+          Right at the start, Cerf and Kahn enumerates what is preventing the already deployed packet switching networks from 
+          seamlessly connecting with each other. They then methodically tackle each problem and present a layer which will effectively solve the said problem. 
+          They enumerated 5 which are (paraphrased):
+        ol
+          li Addressing per network
+          li Allowed size of data to travel the network
+          li Varying time delays in each process step per network
+          li Data recovering and restoration in case of corruption
+          li Signaling of statuses or notification
+        <br/>
+        p.text-justify.
+          The main problem lies with connecting a multitude of networks with each implementing their own strategy with regards to the 5 items enumerated above. 
+          The paper preferred to introduce an interface of some sort that will handle the passage of data between networks and will take care of the appropriate "conversion" needed 
+          so that the data can pass through safely and consistently. They named this interface the "Gateway".
+        <br/>
+        p.text-justify.
+          The gateway, apart from converting the compatibility of a data from one network to another will also be in charge of routing the data which would mean the information needed 
+          should be standardized which led to the "internetwork header" shown below:
+        image(src="/images/cs255/figure_3.png").center-block
+        <br/>
+        p.text-justify.
+          Another task of the gateway would be to fragment a packet which would in turn solve item 2 in the list. This would be relevant when a packet 
+          traversing a network that allows a large size crosses over a network with a lower acceptable packet size. The reassembly would then be left to the host.
+        <br/>
+        p.text-justify.
+          As one will notice, the gateway object alone would not be able to solve all the problems currently plaguing the networks thus the paper introduced the existence of another object, 
+          the "Transmission Control Program" (TCP). The TCP serves as the interface between processes within a host and the packet switches along the network. 
+          The TCP is also in charge of the transmission and acceptance of message coming from the network. As to what that means, we shall explore further in this document.
+        <br/>
+        p.text-justify.
+          One of the many functions of the TCP (sender) is to attach a "process header" (different from the internetwork header above) so that the TCP (receiver) 
+          knows where to forward this particular segment as opposed to packing as many segments (from different processes) in a packet then sending. One might ask then, 
+          how would the receiving TCP know where to forward such packet given a header? This, along the with addressing problem of the internetwork header is solved by the notation below 
+          (which in turn solves the first item in the list above):
+        image(src="/images/cs255/figure_4.png").center-block
+        <br/>
+        p.text-justify.
+          The first 8 bits is used to distinguish which network the packet is destined to while the last 16 bits will be used to determine the host and port, with the convention/slicing of the bits left to the communicating processes.
+        <br/>
+        p.text-justify.
+          Now that the TCP has been introduced, we shall return to the fragmentation functionality of the gateway. We have mentioned that task of reassembling the packets should be left to the host which coincidentally, \
+          would be undertaken by the TCP. Naturally, this would require the packets to contain a sequence number so that the TCP knows where to place the packet in forming the message. 
+          Sequence assignment would just be the relative location of the current segment to the first byte which is illustrated below:
+        image(src="/images/cs255/figure_7.png").center-block
+        p.text-justify.
+          Now, how fragmentation at the gateway works is easily described by the figure below:
+        image(src="/images/cs255/figure_9.png").center-block
+        <br/>
+        p.text-justify.
+          For clarification, ES and EM stands for "end of a segment" and "end of a message" respectively and serves as "dividers" so the TCP can take specific 
+          actions depending on whether these two fields are set (independent of each other). The figure will also give an idea as to how the sequencing works together with the fragmentation of the data.
+        <br/>
+        p.text-justify.
+          Taking this concept to the real world as it is would immediately fail since these are all assuming 100% reliability, that each packet will eventually arrive at 
+          their destination without any hiccup but unfortunately, this will never be the case so the paper then introduces how to handle packet loss, 
+          retransmission of the data and detecting duplicates.
+        <br/>
+        p.text-justify.
+          The paper opts for a "sliding window" mode of operation which is visually interpreted below:
+        image(src="https://upload.wikimedia.org/wikipedia/commons/3/32/Sliding_Window.svg").center-block
+        <br/>
+        p.text-justify.
+          The length of the window can be suggested by the receiving TCP to control the flow of data but can be ignore by the sender. 
+          In such cases, the receiver can simply drop the excess packets then send an acknowledge signal with the next expected sequence number.
+        <br/>
+        p.text-justify.
+          The last parts of the paper discuss how processes would communicate with the TCP (by introducing TCB and RCB to control the process), 
+          how communicating processes begin and end each connection gracefully which they introduce the SYN and REL flags in the internetwork header 
+          and also left with parting problems.
+        <br/>
+        p.text-justify.
+          The protocol introduced by the paper itself is very monolithic (which is why it inspired the dual TCP/IP stack) but gives a lot of 
+          insight especially with how they tried to solve the interlinking problems with different networks. The paper gives a lot of methodologies 
+          with mindful explanations and considerations as to why they proceeded with that path which help demystify the seemingly magical Internet stack that is running today.
+        <br/>
+        p.text-justify.
+          Image Credits: First four images was retrieved from Cerf and Kahn's paper. Last image was retrieved from Wikimedia.
+        <br/>
+      div.col-md-2

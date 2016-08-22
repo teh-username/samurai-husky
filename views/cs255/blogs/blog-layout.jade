@@ -1,0 +1,35 @@
+extends ./../../layout.jade
+
+block stylesheet
+  style.
+    body {
+      padding-top: 30px;
+      padding-bottom: 30px;
+    }
+    @media (max-width: 980px) {
+      body {
+        padding-top: 0;
+      }
+    }
+    textarea { 
+      height: auto; 
+    }
+    p {
+      font-size: 1.2em;
+      text-indent: 2.5em;
+    }
+
+block content
+  ul(class=['nav', 'nav-tabs'])
+    li(role="presentation")#cerf-kahn
+      a(href="/cs255/blogs/cerf-kahn") Cerf-Kahn
+    li(role="presentation")#clark
+      a(href="/cs255/blogs/clark") Clark
+    li(role="presentation")#carpenter
+      a(href="/cs255/blogs/carpenter") Carpenter
+    li(role="presentation")#clark-blumenthal
+      a(href="/cs255/blogs/clark-blumenthal") Clark-Blumenthal
+  block blog-body
+  include ./comments.jade
+append scripts
+  script(src="/javascripts/blog.js")

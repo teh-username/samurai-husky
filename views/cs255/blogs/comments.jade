@@ -1,0 +1,51 @@
+append head
+  script(src="https://www.google.com/recaptcha/api.js")
+
+//- Comment list
+div.container
+  div.row
+    div.col-md-2
+    div.col-md-8
+      h3.text-left.
+        Comments
+    div.col-md-2
+  <br/>
+  div.row
+    div.col-md-2
+    div.col-md-8.comment-collection
+      if comments.length <= 0
+        | *tumbleweed*
+      else
+        for comment in comments
+          div.media
+            div.media-body
+              h4.media-heading 
+                b #{comment.name} 
+                | says:
+              span #{comment.comment}
+    div.col-md-2
+
+//- Comment intake
+<br/>
+div.container
+  div.row
+    div.col-md-2
+    div.col-md-8
+      h3.text-left.
+        Your thoughts?
+    div.col-md-2
+  <br/>
+  div.row
+    div.col-md-2
+    div.col-md-8
+      form#comment-form
+        div.form-group#name
+          label(for="name")= "Name (max of 30 characters)"
+          input(type="text", placeholder="Name please!", name="name").form-control
+        div.form-group#comment
+          label(for="comment")= "Comment (max of 5000 characters)"
+          textarea(placeholder="What's on your mind?", rows="7", name="comment").form-control
+        div(data-sitekey=captchaPublic).g-recaptcha
+        <br/>
+        button(type="submit", class=["btn", "btn-default"])#comment-submit= "Submit"
+    div.col-md-2

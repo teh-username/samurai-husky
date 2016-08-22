@@ -1,0 +1,28 @@
+extends ./blog-layout.jade
+
+block blog-body
+  div.container
+    div.row
+      div.col-md-2
+      div.col-md-8
+        h2.text-center.pager-header A Review of "Architectural Principles of the Internet" by B. Carpenter
+      div.col-md-2
+    <br/>
+    div.row
+      div.col-md-2
+      div.col-md-8
+        p.text-justify.
+          Interestingly, this Request For Comments (RFC) document effectively "freezes" the reigning principles driving the development of the Internet in a quick and easy to read manner. This is not to be confused with Clark's paper ("The Design Philosophy of the DARPA Internet Protocols") which was primarily a historical overview about the reasonings why the principles captured by Carpenter's entry is being utilized. It is more like Clark addresses the "whys" while Carpenter summarizes the "now" (well, during the RFC publication that is).
+        <br/>
+        p.text-justify.
+          It is by no means that this RFC aims to be the de facto document with regards to the principles being utilized in the progression of the internet. It may be correct during its publication but as what Carpenter immediately opens with, "... we must remember that technical change is continuous in the information technology industry". It should be used as a referential document as if tapping on the wisdoms of our predecessors so that we might avoid the pitfalls they have encountered, gather inspiration and improve upon the designs they may have accomplished.
+        <br/>
+        p.text-justify.
+          The principles described within the RFC, entertainingly enough, seems not only to apply within the development cycle of the internet but can also be applied in other fields as well such as software engineering etc. and this is coming from a document written 20 years ago! Majority of the principles are aimed to make the internet as flexible as possible, frowning upon hard-coded conventions and opting for a more dynamic negotiations.
+        <br/>
+        p.text-justify.
+          The immediate principle that resonated to me the most was the issues related to privacy and confidentiality. Since the initial philosophy of the internet was there was mutual trust within the networks, much of the needed security was intentionally left out. The document stresses that while privacy and confidentiality is much needed, it is of secondary importance to the architecture. The needed cryptographical operations must be performed by the hosts themselves and should not depend on the integrity of the carriers/network.
+        <br/>
+        p.text-justify.
+          It is suprising how most (if not all) of the principles tackled by this document is still very much relevant today. Opting for well agreed upon standards, ensuring interoperations between application protocols, dynamic setup of the communication pipe and so on. There are reasons why these are the guiding principles of the internet today but do not take for a fact that these will persist forever. We must keep these principles to heart and use these to help steer to probable next level evolution of the internet and perhaps improve upon them to make the next generation internetworking more relevant to the needs of the human race.
+        <br/>
