@@ -1,6 +1,8 @@
 {
     "recaptcha": {
-        "key": "key"
+        "site": "key",
+        "secret": "key",
+        "url": "url"
     },
     "sqlite": {
         "dir": "dir" 
