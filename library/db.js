@@ -1,9 +1,10 @@
 'use strict';
 
+var config = require('../config');
 var knex = require('knex')({
     client: 'sqlite3',
     connection: {
-        filename: "db.sqlite"
+        filename: config['sqlite']['dir']
     },
     useNullAsDefault: true
 });

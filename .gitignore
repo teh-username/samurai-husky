@@ -37,3 +37,6 @@ db.sqlite
 
 # compiled python scripts
 scripts/traceping/*.pyc
+
+# config file
+config/config.json
