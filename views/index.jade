@@ -1,20 +1,77 @@
-extends layout
+extends base
 
-block content
-  div.masthead.clearfix
-    div.inner
-      h3.masthead-brand LA Roberto
-      nav
-        ul.nav.masthead-nav
-          li.active
-            a(href="#") Home
+block stylesheets
+  link(rel="stylesheet", href="/stylesheets/freelancer.min.css")
+  link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Lato:400,700,400italic,700italic" type="text/css")
 
-  div.inner.cover
-    h1.cover-heading Website is still under construction! <br/>
-    p.lead
-      | But as always, here's a random corgi to make up for it :D
-    p.lead
-      img(
-        style="margin: 0px auto; display:block; height:350px; width:400px; max-width:100%; max-height:100%;", 
-        src=corgeh
-      )
+block body
+  body#page-top.index
+    nav#mainNav.navbar.navbar-default.navbar-fixed-top.navbar-custom
+      .container
+        .navbar-header.page-scroll
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+            span.sr-only Toggle navigation
+            |  Menu 
+            i.fa.fa-bars
+          a.navbar-brand(href='#page-top') HOME
+        #bs-example-navbar-collapse-1.collapse.navbar-collapse
+          ul.nav.navbar-nav.navbar-right
+            li.hidden
+              a(href='#page-top')
+            li.page-scroll
+              a(href='#about') About
+
+    header
+      .container
+        .row
+          .col-lg-12
+            img.img-responsive(src='/images/profile.png', alt='')
+            .intro-text
+              span.name LA Roberto
+              hr.star-light
+              span.skills 
+                  | Full-time (Web) DevOps __ All-around Code Monkey __ Accidental SysAdmin
+
+    section#about
+      .container
+        .row
+          .col-lg-12.text-center
+            h2 About
+            hr.star-primary
+        .row
+          .col-lg-4.col-lg-offset-2
+            p
+              | I'm LA, a humble software developer trying to keep up with the intense marathon that is called the world's technology stack. I'm currently a Full-stack PHP developer + Infrastructure architect for a startup logistics company.
+          .col-lg-4
+            p
+              | Have a project in mind? Need an extra pair of hands on your repo? Just drop me a line and let's see what we can do together!
+
+block footer
+  footer.text-center
+    .footer-above
+      .container
+        .row
+          .footer-col.col-md-4
+          .footer-col.col-md-4
+            h3 Around the Web
+            ul.list-inline
+              li
+                a.btn-social.btn-outline(href='https://github.com/teh-username')
+                  i.fa.fa-fw.fa-github
+              li
+                a.btn-social.btn-outline(href='https://ph.linkedin.com/in/laroberto')
+                  i.fa.fa-fw.fa-linkedin
+          .footer-col.col-md-4
+    .footer-below
+      .container
+        .row
+          .col-lg-12
+            | Copyright © LA Roberto #{(new Date()).getFullYear()} 
+
+  .scroll-top.page-scroll.hidden-sm.hidden-xs.hidden-lg.hidden-md
+    a.btn.btn-primary(href='#page-top')
+      i.fa.fa-chevron-up
+
+block javascripts
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js")
+  script(src="/javascripts/freelancer.min.js")
