@@ -9,6 +9,6 @@ USER app
 COPY . $HOME/
 WORKDIR $HOME
 
-RUN npm install --verbose --only=production && python migrations.py
+RUN npm install --only=production && python migrations.py
 
 CMD ["node", "bin/www"]
