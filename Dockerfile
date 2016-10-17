@@ -11,4 +11,6 @@ WORKDIR $HOME
 
 RUN npm install --only=production && python migrations.py
 
+EXPOSE 3000
+
 CMD ["node", "bin/www"]
