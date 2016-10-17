@@ -1,0 +1,10 @@
+{
+    "recaptcha": {
+        "site": "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI",
+        "secret": "6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe",
+        "url": "https://www.google.com/recaptcha/api/siteverify"
+    },
+    "sqlite": {
+        "dir": "db.sqlite" 
+    }
+}
