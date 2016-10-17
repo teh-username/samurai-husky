@@ -1,7 +1,0 @@
-site:
-    build: .
-    environment:
-        NODE_ENV: production
-        PORT: 5015
-    ports:
-        - "127.0.0.1:5015:5015"
